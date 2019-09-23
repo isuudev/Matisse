@@ -3,7 +3,8 @@
 # Matisse
 [![Build Status](https://travis-ci.org/zhihu/Matisse.svg)](https://travis-ci.org/zhihu/Matisse) [ ![Download](https://api.bintray.com/packages/zhihu/maven/matisse/images/download.svg) ](https://bintray.com/zhihu/maven/matisse/_latestVersion)
 
-Matisse is a well-designed local image and video selector for Android. You can  
+Matisse is a well-designed local image and video selector for Android. You can 
+- Add isCrop & isCropSquare Style
 - Use it in Activity or Fragment
 - Select images including JPEG, PNG, GIF and videos including MPEG, MP4 
 - Apply different themes, including two built-in themes and custom themes
@@ -11,7 +12,7 @@ Matisse is a well-designed local image and video selector for Android. You can
 - Define custom filter rules
 - More to find out yourself
 
-| AlbumMedia Style                    | Select Media Style                     | Crop Style                          |
+| Album Media Style                    | Select Media Style                     | Crop Style                          |
 |:------------------------------:|:---------------------------------:|:--------------------------------:|
 |![](image/screenshot_1.png) | ![](image/screenshot_2.png) | ![](image/screenshot_3.png)|
 
@@ -52,16 +53,16 @@ Start `MatisseActivity` from current `Activity` or `Fragment`:
 
 ```java
 Matisse.from(MainActivity.this)
-        **.choose(MimeType.ofImage(), true)**
+        .choose(MimeType.ofImage(), true)
         .countable(true)
         .addFilter(new GifSizeFilter(320, 320, 5 * Filter.K * Filter.K))
         .gridExpectedSize(getResources().getDimensionPixelSize(R.dimen.grid_expected_size))
         .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
         .thumbnailScale(0.85f)
         .imageEngine(new GlideEngine())
-        **.maxSelectable(1)**
-        **.isCrop(true)**
-        **.isCropSquare(false)**
+        .maxSelectable(1)
+        .isCrop(true)
+        .isCropSquare(false)
         .forResult(REQUEST_CODE_CHOOSE);
 ```
  
