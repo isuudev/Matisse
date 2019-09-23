@@ -11,9 +11,9 @@ Matisse is a well-designed local image and video selector for Android. You can
 - Define custom filter rules
 - More to find out yourself
 
-| Zhihu Style                    | Dracula Style                     | Preview                          |
+| AlbumMedia Style                    | Select Media Style                     | Crop Style                          |
 |:------------------------------:|:---------------------------------:|:--------------------------------:|
-|![](image/screenshot_zhihu.png) | ![](image/screenshot_dracula.png) | ![](image/screenshot_preview.png)|
+|![](image/screenshot_1.png) | ![](image/screenshot_2.png) | ![](image/screenshot_3.png)|
 
 ## Download
 Gradle:
@@ -24,7 +24,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.zhihu.android:matisse:$latest_version'
+    implementation project(':matisse')
 }
 ```
 
@@ -32,12 +32,6 @@ Check out [Matisse releases](https://github.com/zhihu/Matisse/releases) to see m
 
 ## ProGuard
 If you use [Glide](https://github.com/bumptech/glide) as your image engine, add rules as Glide's README says.  
-And add extra rule:
-```pro
--dontwarn com.squareup.picasso.**
-```
-
-If you use [Picasso](https://github.com/square/picasso) as your image engine, add rules as Picasso's README says.  
 And add extra rule:
 ```pro
 -dontwarn com.bumptech.glide.**
@@ -58,14 +52,16 @@ Start `MatisseActivity` from current `Activity` or `Fragment`:
 
 ```java
 Matisse.from(MainActivity.this)
-        .choose(MimeType.allOf())
+        **.choose(MimeType.ofImage(), true)**
         .countable(true)
-        .maxSelectable(9)
         .addFilter(new GifSizeFilter(320, 320, 5 * Filter.K * Filter.K))
         .gridExpectedSize(getResources().getDimensionPixelSize(R.dimen.grid_expected_size))
         .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
         .thumbnailScale(0.85f)
         .imageEngine(new GlideEngine())
+        **.maxSelectable(1)**
+        **.isCrop(true)**
+        **.isCropSquare(false)**
         .forResult(REQUEST_CODE_CHOOSE);
 ```
  
